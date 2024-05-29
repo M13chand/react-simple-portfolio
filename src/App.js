@@ -1,16 +1,36 @@
-import React from'react';
-import Header from './features/ui/Header';
-import Main from './features/home/Main';
-import Footer from './features/ui/Footer';
-function App() {
-  return (
-<div >
-  <Header/>
-  <Main/>
-  <Footer/>
+import React from 'react';
 
-</div>
-  
+import Main from './features/home/Main';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Info from './features/home/Info';
+import Tech from './features/home/Tech';
+import RootLayout from './features/ui/RootLayout';
+function App() {
+  const router = createBrowserRouter([
+    {
+      path: '/', element: <RootLayout />,
+      children: [
+        {
+          path: '/',
+          element: <Main />
+        },
+        {
+          path: '/info',
+          element: <Info />
+        },
+        {
+          path: '/tech',
+          element: <Tech />
+        }
+
+      ]
+    }
+  ])
+  return (
+    <div>
+      <RouterProvider router={router} />
+    </div>
+
   );
 }
 
